@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Checkpoint QC — Delivery Spec Checker for Film &amp; TV</title>
+<meta name="description" content="Checkpoint QC is a native Mac app for DITs and colorists: a curated, always-current library of delivery specs (streamers, broadcasters, theatrical, ad delivery), real file verification, loudness and black/freeze checks, and a branded PDF QC report. Coming soon to the Mac App Store.">
+<link rel="canonical" href="https://checkpointqc.com/">
+<meta name="theme-color" content="#3b82f6">
+
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Checkpoint QC — Delivery Spec Checker for Film &amp; TV">
+<meta property="og:description" content="Know your delivery passes before you send it. Curated delivery specs, real file verification, loudness &amp; black/freeze checks, and a print-ready PDF QC report — native on Mac.">
+<meta property="og:url" content="https://checkpointqc.com/">
+<meta property="og:image" content="https://checkpointqc.com/icon.png">
+<meta property="og:image:alt" content="Checkpoint QC app icon">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Checkpoint QC — Delivery Spec Checker">
+<meta name="twitter:description" content="Delivery-spec QC for DITs, colorists and post — verify a file against what the platform actually requires. Coming soon on Mac.">
+<meta name="twitter:image" content="https://checkpointqc.com/icon.png">
+
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Checkpoint QC",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "macOS 14+",
+  "description": "Native macOS app for DITs and colorists: a curated library of delivery specs, real file verification via AVFoundation, ITU-R BS.1770 / EBU R128 loudness and black/freeze detection, an interactive QC checklist, and a print-ready PDF QC report.",
+  "url": "https://checkpointqc.com/",
+  "image": "https://checkpointqc.com/icon.png",
+  "author": { "@type": "Organization", "name": "RedPixl s.r.o.", "url": "https://redpixl.pictures/" },
+  "featureList": [
+    "Curated, always-current delivery-spec library",
+    "Real file verification (codec, raster, frame rate, colour, audio, timecode)",
+    "ITU-R BS.1770-4 / EBU R128 loudness metering",
+    "Black-frame and frozen-frame detection",
+    "Interactive QC checklist (auto-verified + manual)",
+    "Print-ready PDF QC report"
+  ]
+}
+</script>
+
+<style>
+  :root{
+    --blue:#3b82f6; --indigo:#6366f1; --ink:#0f1720; --muted:#5a6572;
+    --bg:#ffffff; --card:#f6f8fb; --line:#e6ebf1;
+    --pass:#16a34a; --warn:#d97706; --fail:#ef4444;
+    --grad:linear-gradient(135deg,#3b82f6 0%,#6366f1 100%);
+    --maxw:1080px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#eef2f7; --muted:#9aa6b4; --bg:#0d1117; --card:#161c25; --line:#232c38; }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Hero */
+  header.hero{position:relative;overflow:hidden;text-align:center;padding:88px 0 72px}
+  .hero::before{
+    content:"";position:absolute;inset:0;z-index:-1;opacity:.10;
+    background:var(--grad);
+    -webkit-mask:radial-gradient(120% 80% at 50% 0%,#000 40%,transparent 75%);
+            mask:radial-gradient(120% 80% at 50% 0%,#000 40%,transparent 75%);
+  }
+  .badge{
+    display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:#fff;background:var(--grad);padding:7px 16px;border-radius:999px;margin-bottom:26px;
+    box-shadow:0 6px 20px rgba(59,130,246,.28);
+  }
+  .app-icon{width:118px;height:118px;border-radius:26px;display:block;margin:0 auto 22px;
+    box-shadow:0 18px 40px rgba(20,40,80,.22)}
+  h1{font-size:clamp(34px,6vw,54px);line-height:1.08;font-weight:800;letter-spacing:-.02em}
+  h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .tagline{font-size:clamp(17px,2.4vw,21px);color:var(--muted);max-width:660px;margin:18px auto 0}
+  .store{margin-top:26px;font-size:15px;color:var(--muted)}
+  .cta{
+    display:inline-block;margin-top:30px;font-weight:600;color:#fff;background:var(--ink);
+    padding:13px 26px;border-radius:12px;
+  }
+  @media (prefers-color-scheme: dark){ .cta{background:#fff;color:#0d1117} }
+  .cta:hover{text-decoration:none;opacity:.9}
+  .cta.secondary{background:transparent;color:var(--ink);border:1px solid var(--line);margin-left:10px}
+  @media (prefers-color-scheme: dark){ .cta.secondary{color:#fff} }
+
+  /* Sections */
+  section{padding:56px 0}
+  .eyebrow{text-align:center;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+  h2{text-align:center;font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.02em;margin:8px 0 6px}
+  .sub{text-align:center;color:var(--muted);max-width:660px;margin:0 auto 40px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .card .ico{font-size:28px;line-height:1;margin-bottom:14px}
+  .card h3{font-size:18px;font-weight:700;margin-bottom:7px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* How it works — numbered steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;counter-reset:step}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}
+  .step .n{width:30px;height:30px;border-radius:8px;background:var(--grad);color:#fff;font-weight:800;
+    font-size:15px;display:flex;align-items:center;justify-content:center;margin-bottom:13px}
+  .step h3{font-size:16px;font-weight:700;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:14.5px}
+
+  /* Verdict chips */
+  .verdicts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:28px}
+  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);
+    border-radius:999px;padding:8px 16px;font-weight:600;font-size:14px}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .dot.pass{background:var(--pass)} .dot.warn{background:var(--warn)} .dot.fail{background:var(--fail)}
+
+  /* Spec library showcase */
+  .plats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+  .plat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;text-align:center}
+  .plat .pico{font-size:30px;margin-bottom:10px}
+  .plat .name{font-weight:700}
+  .plat .desc{color:var(--muted);font-size:14px;margin-top:4px}
+  .plat-note{text-align:center;color:var(--muted);font-size:13px;margin-top:22px;opacity:.9}
+
+  /* Positioning table */
+  .pos{max-width:820px;margin:0 auto;display:grid;gap:12px}
+  .posrow{display:grid;grid-template-columns:170px 1fr;gap:16px;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:16px 20px;align-items:baseline}
+  .posrow b{font-weight:700}
+  .posrow.you{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
+  .posrow span{color:var(--muted);font-size:15px}
+  @media (max-width:560px){ .posrow{grid-template-columns:1fr;gap:4px} }
+
+  /* Pricing */
+  .price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;align-items:stretch;max-width:900px;margin:0 auto}
+  .price{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 24px;position:relative;display:flex;flex-direction:column}
+  .price.feat{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue) inset}
+  .price .tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--grad);color:#fff;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:5px 12px;border-radius:999px;white-space:nowrap}
+  .price h3{font-size:16px;font-weight:700;margin:0 0 6px}
+  .price .amt{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+  .price .per{color:var(--muted);font-size:13px;margin:6px 0 16px}
+  .price ul{list-style:none;margin:0;padding:0;text-align:left}
+  .price li{color:var(--muted);font-size:15px;padding:6px 0 6px 24px;position:relative}
+  .price li::before{content:"✓";position:absolute;left:0;color:var(--pass);font-weight:700}
+
+  /* Audience */
+  .aud{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:10px 20px;font-weight:600}
+
+  .soon-icon{width:88px;height:88px;border-radius:20px;display:block;margin:0 auto 20px;
+    box-shadow:0 14px 34px rgba(20,40,80,.20)}
+
+  footer{border-top:1px solid var(--line);padding:40px 0 56px;text-align:center;color:var(--muted);font-size:14px}
+  footer a{font-weight:600}
+  footer .fnote{margin-top:10px;font-size:13px;opacity:.85}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <img class="app-icon" src="icon.png" width="118" height="118" alt="Checkpoint QC app icon">
+    <span class="badge">Coming soon on Mac</span>
+    <h1>Checkpoint&nbsp;QC<br><span class="grad">does your delivery pass?</span></h1>
+    <p class="tagline">A native Mac app for DITs and colorists: check a real file against what the
+      platform actually requires — codec, raster, frame rate, colour, audio, loudness — and hand over
+      a clean PDF QC report.</p>
+    <p class="store">🍎 Coming soon to the Mac&nbsp;App&nbsp;Store</p>
+    <a class="cta" href="#how">See how it works →</a>
+    <a class="cta secondary" href="https://github.com/jirivatka/Checkpoint-QC-Support/discussions">Join the community &amp; get updates →</a>
+  </div>
+</header>
+
+<section id="how">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2>From spec to signed-off, in one place</h2>
+    <p class="sub">The curated spec library is the product — browse it with no file attached, then point
+      Checkpoint at a real deliverable and let it do the checking.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h3>Browse a spec</h3>
+        <p>Pick a platform and deliverable and see the exact tech spec — grouped by domain, with severity, guidance and a source citation.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h3>Verify a file</h3>
+        <p>Point at a real deliverable. The engine reads its metadata — codec, raster, frame rate, colour, audio, timecode — and scores it against the spec.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h3>Measure it</h3>
+        <p>An opt-in decode pass measures loudness (LUFS / LRA / true peak) and scans for black and frozen frames.</p>
+      </div>
+      <div class="step">
+        <div class="n">4</div>
+        <h3>Sign it off</h3>
+        <p>Auto-verified rows sit beside manual checks (textless, A/V sync, illegal levels) — then export a print-ready PDF QC report.</p>
+      </div>
+    </div>
+    <div class="verdicts">
+      <span class="chip"><span class="dot pass"></span>Pass</span>
+      <span class="chip"><span class="dot warn"></span>Warn</span>
+      <span class="chip"><span class="dot fail"></span>Fail</span>
+      <span class="chip">per parameter · with an overall verdict</span>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow">What it does</p>
+    <h2>The checks a delivery actually needs</h2>
+    <p class="sub">Everything scored against the chosen spec — no guessing, no spreadsheet, no separate tools.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ico">📚</div>
+        <h3>Curated spec library</h3>
+        <p>Delivery specs for streamers, broadcasters, theatrical and ad delivery — each rule with severity, guidance and a source citation. Browsable with no file attached.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔍</div>
+        <h3>Real file verification</h3>
+        <p>Reads a deliverable's codec, raster, frame rate, colour, audio and timecode via AVFoundation, and flags every parameter pass / warn / fail. QuickTime &amp; MP4 — ProRes, H.264, HEVC.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔊</div>
+        <h3>Broadcast-grade loudness</h3>
+        <p>ITU-R BS.1770-4 / EBU R128 integrated LUFS, loudness range and 4× oversampled true peak — validated against the EBU Tech 3341 test signals.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🎞️</div>
+        <h3>Black &amp; freeze detection</h3>
+        <p>The decode pass samples the picture for black frames and frozen frames, so silent delivery-killers surface before the platform's QC does.</p>
+      </div>
+      <div class="card">
+        <div class="ico">✅</div>
+        <h3>QC checklist</h3>
+        <p>Auto-verified rows sit alongside manual checkboxes — textless elements, A/V sync, illegal levels — for a complete, defensible sign-off.</p>
+      </div>
+      <div class="card">
+        <div class="ico">📄</div>
+        <h3>Print-ready PDF report</h3>
+        <p>A branded, per-parameter QC report with an overall verdict — the deliverable you hand to production, post and the platform.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🔄</div>
+        <h3>Always current</h3>
+        <p>Specs change. Optional Spec Updates keep the library refreshed as platforms revise their delivery requirements — and lapsing keeps every spec you already have.</p>
+      </div>
+      <div class="card">
+        <div class="ico">🛡️</div>
+        <h3>Clean-room &amp; sandbox-safe</h3>
+        <p>Built from scratch with no third-party or proprietary code and no external binaries — fully App&nbsp;Sandbox-clean and Mac App Store native.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fit">
+  <div class="wrap">
+    <p class="eyebrow">Where it fits</p>
+    <h2>The one question the other tools don't answer</h2>
+    <p class="sub">Checkpoint QC isn't another metadata viewer or scope. It answers a different question.</p>
+    <div class="pos">
+      <div class="posrow"><b>MediaInfo</b><span>tells you what a file <em>is</em>.</span></div>
+      <div class="posrow"><b>QCTools</b><span>helps you <em>see</em> whether it looks damaged.</span></div>
+      <div class="posrow"><b>Enterprise QC</b><span>is broadcast-compliance infrastructure priced for facilities.</span></div>
+      <div class="posrow you"><b>Checkpoint&nbsp;QC</b><span>tells you whether the file <em>matches what this platform actually requires, right now</em> — and gives you the report to prove it.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="specs" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow">Spec library</p>
+    <h2>Delivery specs for where you actually deliver</h2>
+    <p class="sub">Grouped by the destinations post teams hand off to every day.</p>
+    <div class="plats">
+      <div class="plat"><div class="pico">📺</div><div class="name">Streamers</div><div class="desc">SVOD / AVOD platform delivery specs</div></div>
+      <div class="plat"><div class="pico">📡</div><div class="name">Broadcasters</div><div class="desc">Network &amp; channel technical delivery</div></div>
+      <div class="plat"><div class="pico">🎬</div><div class="name">Theatrical</div><div class="desc">Cinema / festival deliverables</div></div>
+      <div class="plat"><div class="pico">📣</div><div class="name">Ad delivery</div><div class="desc">Commercial &amp; spot delivery specs</div></div>
+    </div>
+    <p class="plat-note">Launching with the Netflix delivery spec, growing through Spec Updates. Always verify against each platform's current official documentation before final hand-off.</p>
+  </div>
+</section>
+
+<section id="who">
+  <div class="wrap">
+    <p class="eyebrow">Who it's for</p>
+    <h2>Built for the people who sign off the deliverable</h2>
+    <p class="sub">Anyone whose name is on the hand-off when a file goes out the door.</p>
+    <div class="aud">
+      <span class="pill">Digital Imaging Technicians</span>
+      <span class="pill">Colorists</span>
+      <span class="pill">Finishing &amp; online artists</span>
+      <span class="pill">Post-production houses</span>
+      <span class="pill">QC &amp; delivery operators</span>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <p class="eyebrow">Pricing</p>
+    <h2>Buy once. Own it forever.</h2>
+    <p class="sub">Free to try. One payment unlocks everything — no subscription needed. Optional yearly Spec Updates keep the library current.</p>
+    <div class="price-grid">
+      <div class="price">
+        <h3>Free</h3>
+        <div class="amt">Try it</div>
+        <p class="per">no purchase</p>
+        <ul>
+          <li>Browse the sample delivery spec</li>
+          <li>Manual QC checklist</li>
+          <li>See exactly how it works</li>
+        </ul>
+      </div>
+      <div class="price feat">
+        <span class="tag">Most popular</span>
+        <h3>Full Unlock</h3>
+        <div class="amt">One-time</div>
+        <p class="per">forever</p>
+        <ul>
+          <li>Every delivery spec</li>
+          <li>Real file verification</li>
+          <li>Loudness &amp; black/freeze checks</li>
+          <li>Print-ready PDF QC reports</li>
+        </ul>
+      </div>
+      <div class="price">
+        <h3>Spec Updates</h3>
+        <div class="amt">Yearly</div>
+        <p class="per">optional</p>
+        <ul>
+          <li>Ongoing spec refreshes</li>
+          <li>New platforms as they're added</li>
+          <li>Cancel anytime — keep what you own</li>
+        </ul>
+      </div>
+    </div>
+    <p class="plat-note">Final pricing announced at launch. The one-time unlock never expires; Spec Updates are entirely optional.</p>
+  </div>
+</section>
+
+<section id="soon" style="text-align:center">
+  <div class="wrap">
+    <img class="soon-icon" src="icon.png" width="88" height="88" alt="Checkpoint QC app icon">
+    <p class="eyebrow">Launching soon</p>
+    <h2>Checkpoint QC is on the way</h2>
+    <p class="sub">A native Mac app from RedPixl, coming soon to the Mac App Store.
+      In the meantime, take a look at our first pro tool, DIT Media Calculator.</p>
+    <a class="cta" href="https://ditmediacalculator.com">See DIT Media Calculator →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <strong>Checkpoint QC</strong> — delivery-spec checker &amp; QC for film &amp; TV.<br>
+    <a href="https://github.com/jirivatka/Checkpoint-QC-Support">Support &amp; community</a> · <a href="/privacy.html">Privacy</a> · <a href="https://www.redpixl.pictures">RedPixl</a>
+    <p class="fnote">Specs are curated approximations for QC guidance — always verify against each platform's current official delivery documentation. macOS 14+.</p>
+    <p class="fnote">© 2026 RedPixl s.r.o. · <a href="https://www.redpixl.pictures">www.redpixl.pictures</a></p>
+  </div>
+</footer>
+
+<!-- Cloudflare Web Analytics (cookieless) — replace CF_TOKEN_PLACEHOLDER with the beacon token for checkpointqc.com -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "CF_TOKEN_PLACEHOLDER"}'></script>
+
+</body>
+</html>
