@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support — Checkpoint QC</title>
+<meta name="description" content="Help, bug reports and answers for Checkpoint QC — the delivery-spec checker for film and TV.">
+<link rel="canonical" href="https://checkpointqc.com/support.html">
+<meta name="theme-color" content="#b91c1c">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root{ --blue:#dc2626; --ink:#0f1720; --muted:#5a6572; --bg:#ffffff; --card:#f6f8fb; --line:#e6ebf1; --maxw:760px; }
+  @media (prefers-color-scheme: dark){ :root{ --ink:#eef2f7; --muted:#9aa6b4; --bg:#0d1117; --card:#161c25; --line:#232c38; } }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:56px 24px 72px}
+  a{color:var(--blue)}
+  h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+  .lead{color:var(--muted);margin-bottom:8px}
+  .updated{color:var(--muted);font-size:14px;margin-bottom:36px}
+  h2{font-size:20px;font-weight:700;margin:32px 0 8px}
+  p{margin:0 0 12px}
+  ul{margin:0 0 12px 22px}
+  li{margin:4px 0;color:var(--ink)}
+  .muted{color:var(--muted)}
+  .back{display:inline-block;margin-bottom:28px;font-weight:600;text-decoration:none}
+  footer{border-top:1px solid var(--line);margin-top:44px;padding-top:22px;color:var(--muted);font-size:14px}
+  .cta{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;
+    padding:12px 20px;border-radius:10px;margin:6px 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:0 0 12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">← Checkpoint&nbsp;QC</a>
+  <h1>Support</h1>
+  <p class="lead">Questions, bug reports and feature requests — all in one place.</p>
+  <p class="updated">Last updated: 2026</p>
+
+  <h2>Get help</h2>
+  <p>Support runs in the open, on the Checkpoint QC community forum. Post a question and you'll
+    usually find it's already been asked — and answers stay visible for everyone else.</p>
+  <p><a class="cta" href="https://github.com/jirivatka/Checkpoint-QC-Support/discussions">Ask a question
+    on the forum →</a></p>
+  <p class="muted">A free GitHub account is needed to post. You can read everything without one.</p>
+
+  <h2>Reporting a problem</h2>
+  <p>Delivery files are all different, and the useful detail is usually in the specifics. When something
+    doesn't behave, include:</p>
+  <ul>
+    <li>The <strong>delivery spec</strong> you were checking against, and the operator it belongs to.</li>
+    <li>The <strong>file</strong>: container, codec, raster, frame rate and audio layout — the app's
+      metadata read-out has all of it, and <em>Copy</em> puts it on the clipboard as text.</li>
+    <li>What you <strong>expected</strong> the rule to do, and what it did instead.</li>
+    <li>Your <strong>macOS version</strong> and Mac model.</li>
+  </ul>
+  <p>Please don't upload client media. The metadata read-out is nearly always enough, and if it isn't,
+    a short synthetic clip that reproduces the behaviour is better for everyone.</p>
+
+  <h2>Reporting a wrong spec</h2>
+  <p>Specifications change, and operators revise them without much fanfare. If a rule looks wrong,
+    say so — <strong>point at the document</strong>. Every rule in the app cites the published source it
+    was transcribed from, along with the version and the date it was checked, so a report that names the
+    current document and the clause it contradicts can be fixed quickly and confidently.</p>
+  <p>Spec corrections are the most valuable reports this project gets.</p>
+
+  <h2>Requirements</h2>
+  <ul>
+    <li><strong>macOS 14</strong> or later.</li>
+    <li>Apple&nbsp;silicon and Intel Macs — the app ships as a universal binary.</li>
+    <li>Mac only. There is no iPad version: verification reads real deliverables off local and network
+      storage, and an iPad has no honest story for that.</li>
+  </ul>
+
+  <h2>What you get without paying</h2>
+  <p>The whole catalogue is browsable for free — every spec, every rule, and the source citation behind
+    it. File verification is enabled free on two open industry standards, <strong>AS-11 UK&nbsp;DPP HD</strong>
+    and <strong>EBU R&nbsp;128 Programme</strong>, so you can point the app at a real master and see what it
+    actually does before deciding anything. PDF QC report export is part of Full Unlock.</p>
+  <p>Full Unlock is a one-time purchase that enables verification and PDF export across the whole
+    catalogue, and keeps every spec that shipped with your version — permanently.</p>
+
+  <h2>Purchases and restoring</h2>
+  <p>Purchases go through the App Store. If you've reinstalled, moved to a new Mac, or signed in with a
+    different Apple Account, use <strong>Restore</strong> on the unlock screen — it re-checks your
+    entitlements with Apple and doesn't charge you again.</p>
+  <p>Refunds are handled by Apple, not by us, at
+    <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+
+  <h2>Spec Updates, and what happens if it lapses</h2>
+  <div class="card">
+    <p style="margin:0"><strong>Letting the subscription lapse never takes anything away.</strong> Every
+      spec that shipped with the version you bought stays unlocked, forever. The subscription only adds
+      specifications published <em>after</em> your purchase.</p>
+  </div>
+  <p>It's optional, and it's meant to be. Buy once and the app keeps working exactly as it did the day
+    you bought it.</p>
+
+  <h2>How accurate are the specs?</h2>
+  <p>Every rule is transcribed from an operator's own published documentation and cites it, with the
+    document version and the date it was verified. Where a specification is genuinely ambiguous, the app
+    says so rather than inventing a tolerance.</p>
+  <p>That said: operators revise their documents, and your delivery contract is the authority, not this
+    app. Treat Checkpoint QC as a fast, thorough second pair of eyes — and verify against the current
+    document before hand-off.</p>
+
+  <h2>Your files stay on your Mac</h2>
+  <p>Verification, loudness measurement and black/freeze detection all run locally. Media is never
+    uploaded. See the <a href="/privacy.html">privacy policy</a> for the detail.</p>
+
+  <h2>Anything else</h2>
+  <p>For press, business or anything that doesn't belong on a public forum, reach us via
+    <a href="https://www.redpixl.pictures">redpixl.pictures</a>.</p>
+
+  <footer>
+    © 2026 RedPixl&nbsp;s.r.o. · <a href="/">checkpointqc.com</a> · <a href="/privacy.html">Privacy</a> · <a href="https://www.redpixl.pictures">RedPixl</a>
+  </footer>
+</div>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5d4eac3367fc4104a7f7b9fcf754be70"}'></script>
+</body>
+</html>
