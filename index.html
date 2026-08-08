@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Checkpoint QC — Delivery Spec Checker for Film &amp; TV</title>
-<meta name="description" content="Checkpoint QC is a native Mac app for DITs and colorists: 40 curated delivery specs for the world's streamers and broadcasters (Netflix, Amazon, BBC, ITV, ARTE, ZDF and more) plus theatrical and DPP/EBU standards, custom presets you build yourself, real file verification, loudness and black/freeze checks, and a branded PDF QC report. Coming soon to the Mac App Store.">
+<meta name="description" content="Checkpoint QC is a native Mac app for DITs and colorists: 50+ curated delivery specs for the world's streamers and broadcasters (Netflix, Amazon, BBC, ITV, ARTE, ZDF and more) plus theatrical and DPP/EBU standards, custom presets you build yourself, real file verification, loudness and black/freeze checks, and a branded PDF QC report. Coming soon to the Mac App Store.">
 <link rel="canonical" href="https://checkpointqc.com/">
 <meta name="theme-color" content="#b91c1c">
 
@@ -215,6 +215,55 @@
   </div>
 </section>
 
+<style>
+  /* Scoped styles for the screenshots / report section */
+  #screens .shot{margin:0}
+  #screens .shot img{width:100%;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 22px 55px rgba(20,40,80,.20)}
+  #screens .shot figcaption{color:var(--muted);font-size:14px;line-height:1.45;margin:12px auto 0;text-align:center;max-width:640px}
+  #screens .shot.feature{max-width:940px;margin:0 auto 42px}
+  #screens .shot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px 30px;margin-bottom:46px}
+  #screens .report-cta{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px}
+  #screens .report-cta img{width:300px;max-width:44vw;border:1px solid var(--line);border-radius:8px;
+    box-shadow:0 12px 30px rgba(20,40,80,.16);display:block}
+  #screens .report-cta h3{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  #screens .report-cta p{color:var(--muted);font-size:15px;margin-bottom:16px}
+  #screens .report-cta .cta{margin-top:0}
+  @media(max-width:760px){
+    #screens .shot-grid{grid-template-columns:1fr}
+    #screens .report-cta{grid-template-columns:1fr;text-align:center}
+    #screens .report-cta img{margin:0 auto;max-width:70vw}
+  }
+</style>
+<section id="screens">
+  <div class="wrap">
+    <p class="eyebrow">See it in action</p>
+    <h2>The whole QC pass, on one screen</h2>
+    <p class="sub">Browse the spec, attach a real file, and every parameter is scored pass / warn / fail — sources cited, nothing hidden.</p>
+    <figure class="shot feature">
+      <img src="shot-verify.png" alt="Checkpoint QC verifying a Netflix IMF UHD SDR file against the delivery spec — video and audio parameters scored pass/fail">
+      <figcaption>Verify a file against the spec — every parameter scored pass, warn or fail, and verified against the source document.</figcaption>
+    </figure>
+    <div class="shot-grid">
+      <figure class="shot"><img src="shot-spec.png" alt="Browsing the BBC AS-11 UK DPP delivery spec in Checkpoint QC"><figcaption>Browse any delivery spec — grouped by domain, with severity, guidance and source citations.</figcaption></figure>
+      <figure class="shot"><img src="shot-metadata.png" alt="Checkpoint QC Media Inspector showing full file metadata"><figcaption>Inspect the file's full metadata in the built-in Media Inspector.</figcaption></figure>
+      <figure class="shot"><img src="shot-sky-hdr.png" alt="Sky UHD HDR delivery spec with loudness and true-peak targets in Checkpoint QC"><figcaption>HDR &amp; broadcaster specs — Sky UHD HDR, with loudness and true-peak targets.</figcaption></figure>
+      <figure class="shot"><img src="shot-bbc-dpp.png" alt="BBC AS-11 UK DPP HD delivery spec in Checkpoint QC"><figcaption>Broadcaster delivery — BBC AS-11 UK DPP, checked to the letter.</figcaption></figure>
+    </div>
+    <div class="report-cta">
+      <a href="sample-qc-report.pdf" target="_blank" rel="noopener">
+        <img src="sample-qc-report-preview.png" alt="Sample Checkpoint QC PDF delivery QC report, page 1">
+      </a>
+      <div>
+        <h3>Every check lands in a print-ready PDF report</h3>
+        <p>A branded, per-parameter QC report — expected vs found, with an overall verdict — the deliverable you hand to production, post and the platform.</p>
+        <a class="cta" href="sample-qc-report.pdf" target="_blank" rel="noopener">Download a sample report →</a>
+        <a class="cta secondary" href="sample-qc-summary.pdf" target="_blank" rel="noopener">Summary version →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="features" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <p class="eyebrow">What it does</p>
@@ -224,7 +273,7 @@
       <div class="card">
         <div class="ico">📚</div>
         <h3>Curated spec library</h3>
-        <p>40 curated delivery specs and growing — streamers, broadcasters, theatrical and delivery standards — each rule with severity, guidance and a source citation. New platforms land regularly through Spec Updates.</p>
+        <p>50+ curated delivery specs and growing — streamers, broadcasters, theatrical and delivery standards — each rule with severity, guidance and a source citation. New platforms land regularly through Spec Updates.</p>
       </div>
       <div class="card">
         <div class="ico">🧩</div>
@@ -279,7 +328,7 @@
       <div class="posrow"><b>MediaInfo</b><span>tells you what a file <em>is</em>.</span></div>
       <div class="posrow"><b>QCTools</b><span>helps you <em>see</em> whether it looks damaged.</span></div>
       <div class="posrow"><b>Enterprise QC</b><span>is broadcast-compliance infrastructure priced for facilities.</span></div>
-      <div class="posrow you"><b>Checkpoint&nbsp;QC</b><span>tells you whether the file <em>matches what this platform actually requires, right now</em> — and gives you the report to prove it.</span></div>
+      <div class="posrow you"><b>Checkpoint&nbsp;QC</b><span>reads what the file <em>is</em> — the same metadata MediaInfo gives you — <strong>and</strong> tells you whether it <em>matches what this platform actually requires, right now</em>, with the report to prove it.</span></div>
     </div>
   </div>
 </section>
@@ -287,7 +336,7 @@
 <section id="specs" style="background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
   <div class="wrap">
     <p class="eyebrow">Spec library</p>
-    <h2>40 delivery specs — and growing</h2>
+    <h2>50+ delivery specs — and growing</h2>
     <p class="sub">Curated, cited specs for the world's major streamers and broadcasters, plus theatrical and delivery standards — browsable with no file attached, and kept current through Spec Updates.</p>
     <div class="plats">
       <div class="plat"><div class="pico">📺</div><div class="name">Streamers</div><div class="desc">Netflix, Amazon, Apple&nbsp;TV+, HBO&nbsp;Max, Hulu, Paramount+, YouTube &amp; more</div></div>
@@ -295,7 +344,7 @@
       <div class="plat"><div class="pico">🎬</div><div class="name">Theatrical</div><div class="desc">DCP cinema deliverables</div></div>
       <div class="plat"><div class="pico">📐</div><div class="name">Standards</div><div class="desc">DPP / AS-11 and EBU&nbsp;R128</div></div>
     </div>
-    <p class="plat-note">40 curated specs and counting, growing through Spec Updates. Specs are curated approximations for QC guidance — always verify against each platform's current official documentation before final hand-off.</p>
+    <p class="plat-note">50+ curated specs and counting, growing through Spec Updates. Specs are curated approximations for QC guidance — always verify against each platform's current official documentation before final hand-off.</p>
   </div>
 </section>
 
