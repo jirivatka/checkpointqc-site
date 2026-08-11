@@ -3,6 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+  /* Always open at the top: don't restore scroll, and strip any #hash on load
+     (e.g. a shared /#how link) BEFORE the browser jumps to it. In-page anchor
+     links still scroll normally when clicked. */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+</script>
 <title>Checkpoint QC — Delivery Spec Checker for Film &amp; TV</title>
 <meta name="description" content="Checkpoint QC is a native Mac app for finishing artists, editors and post/QC teams: 185 curated delivery specs from 51 organisations across 19 countries — the world's streamers and broadcasters (Netflix, Amazon, BBC, ITV, ARTE, ZDF and more) plus theatrical and DPP/EBU standards, custom presets you build yourself, real file verification, loudness and black/freeze checks, and a branded PDF QC report. Available now on the Mac App Store.">
 <link rel="canonical" href="https://checkpointqc.com/">
@@ -221,6 +228,11 @@
   #screens .shot{margin:0}
   #screens .shot img{width:100%;display:block;border:1px solid var(--line);border-radius:14px;box-shadow:0 22px 55px rgba(20,40,80,.20)}
   #screens .shot figcaption{color:var(--muted);font-size:14px;line-height:1.45;margin:12px auto 0;text-align:center;max-width:640px}
+  #screens .shot img{cursor:zoom-in}
+  #lb{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(6,10,16,.93);padding:20px;cursor:zoom-out}
+  #lb.on{display:flex}
+  #lb img{max-width:96vw;max-height:92vh;width:auto;height:auto;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+  #lb .lb-hint{position:absolute;top:14px;right:18px;color:#cbd5e1;font-size:13px;opacity:.85;pointer-events:none}
   #screens .shot.feature{max-width:940px;margin:0 auto 42px}
   #screens .shot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:34px 30px;margin-bottom:46px}
   #screens .report-cta{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;
@@ -243,18 +255,20 @@
     <p class="sub">Browse the spec, attach a real file, and every parameter is scored pass / warn / fail — sources cited, nothing hidden.</p>
     <figure class="shot feature">
       <img src="shot-verify.png" alt="Checkpoint QC verifying a Netflix IMF UHD SDR file against the delivery spec — video and audio parameters scored pass/fail">
-      <figcaption>Verify a file against the spec — every parameter scored pass, warn or fail, and verified against the source document.</figcaption>
+      <figcaption>Verify a file against the spec — every parameter scored pass, warn or fail, and checked against the source document.</figcaption>
     </figure>
     <div class="shot-grid">
-      <figure class="shot"><img src="shot-spec.png" alt="Browsing the BBC AS-11 UK DPP delivery spec in Checkpoint QC"><figcaption>Browse any delivery spec — grouped by domain, with severity, guidance and source citations.</figcaption></figure>
+      <figure class="shot"><img src="shot-spec.png" alt="Browsing the Sky UHD HDR delivery spec in Checkpoint QC"><figcaption>Browse any delivery spec — grouped by domain, with severity, guidance and a source citation.</figcaption></figure>
+      <figure class="shot"><img src="shot-search.png" alt="Searching the Checkpoint QC catalog for delivery specs that require Dolby Vision"><figcaption>Search the whole catalog — every spec that calls for Dolby Vision, a codec or a frame rate, in one place.</figcaption></figure>
       <figure class="shot"><img src="shot-metadata.png" alt="Checkpoint QC Media Inspector showing full file metadata"><figcaption>Inspect the file's full metadata in the built-in Media Inspector.</figcaption></figure>
       <figure class="shot"><img src="shot-sky-pass.png" alt="A file passing verification against the Sky UHD SDR delivery spec in Checkpoint QC"><figcaption>A clean pass — verified against the Sky UHD spec, with loudness and true peak measured.</figcaption></figure>
       <figure class="shot"><img src="shot-bbc-dpp.png" alt="BBC AS-11 UK DPP HD delivery spec in Checkpoint QC"><figcaption>Broadcaster delivery — BBC AS-11 UK DPP, checked to the letter.</figcaption></figure>
+      <figure class="shot"><img src="shot-preset-spec.png" alt="A custom preset in Checkpoint QC browsing and verifying like a built-in spec, under My Presets"><figcaption>Your own presets browse and verify exactly like a built-in spec — under <em>My&nbsp;Presets</em>.</figcaption></figure>
     </div>
-    <div class="shot-grid">
-      <figure class="shot"><img src="shot-preset-editor.png" alt="Building a custom preset in Checkpoint QC — your own rules, severities and expected values"><figcaption><strong>Build your own presets</strong> — capture a house or client delivery standard with your own rules, severities and expected values.</figcaption></figure>
-      <figure class="shot"><img src="shot-preset-spec.png" alt="A custom preset in Checkpoint QC browsing and verifying like a built-in spec, under My Presets"><figcaption>…then it browses and verifies exactly like a built-in spec — under <em>My&nbsp;Presets</em>.</figcaption></figure>
-    </div>
+    <figure class="shot feature">
+      <img src="shot-preset-editor.png" alt="Building a custom preset in Checkpoint QC — your own rules, severities and expected values">
+      <figcaption><strong>Build your own presets</strong> — capture a house or client delivery standard with your own rules, severities and expected values.</figcaption>
+    </figure>
     <div class="report-cta">
       <a href="sample-qc-report.pdf" target="_blank" rel="noopener">
         <img src="sample-qc-report-preview.png" alt="Sample Checkpoint QC PDF delivery QC report, page 1">
@@ -434,6 +448,23 @@
     <p class="fnote">© 2026 RedPixl s.r.o. · <a href="https://www.redpixl.pictures">www.redpixl.pictures</a></p>
   </div>
 </footer>
+
+<!-- Click-to-zoom lightbox for the app screenshots -->
+<div id="lb" aria-hidden="true"><span class="lb-hint">Click anywhere or press Esc to close</span><img alt=""></div>
+<script>
+(function(){
+  var lb=document.getElementById('lb'), img=lb.querySelector('img');
+  function close(){lb.classList.remove('on');img.removeAttribute('src');document.documentElement.style.overflow='';}
+  document.querySelectorAll('#screens .shot img').forEach(function(el){
+    el.addEventListener('click',function(){
+      img.src=el.currentSrc||el.src; img.alt=el.alt||'';
+      lb.classList.add('on'); document.documentElement.style.overflow='hidden';
+    });
+  });
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'||e.key==='Esc')close();});
+})();
+</script>
 
 <!-- Cloudflare Web Analytics (cookieless) -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5d4eac3367fc4104a7f7b9fcf754be70"}'></script>
