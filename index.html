@@ -20,12 +20,15 @@
 <meta property="og:title" content="Checkpoint QC — Delivery Spec Checker for Film &amp; TV">
 <meta property="og:description" content="Know your delivery passes before you send it. Curated delivery specs, real file verification, loudness &amp; black/freeze checks, and a print-ready PDF QC report — native on Mac.">
 <meta property="og:url" content="https://checkpointqc.com/">
-<meta property="og:image" content="https://checkpointqc.com/icon.png">
-<meta property="og:image:alt" content="Checkpoint QC app icon">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://checkpointqc.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="Checkpoint QC — does your delivery pass? Delivery-spec QC for film & TV.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Checkpoint QC — Delivery Spec Checker">
 <meta name="twitter:description" content="Delivery-spec QC for finishing, post and QC teams — verify a file against what the platform actually requires. Available now on Mac.">
-<meta name="twitter:image" content="https://checkpointqc.com/icon.png">
+<meta name="twitter:image" content="https://checkpointqc.com/og-image.png">
 
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
@@ -40,6 +43,13 @@
   "description": "Native macOS app for finishing artists, editors and post/QC teams: a curated library of delivery specs, real file verification via AVFoundation, ITU-R BS.1770 / EBU R128 loudness and black/freeze detection, an interactive QC checklist, and a print-ready PDF QC report.",
   "url": "https://checkpointqc.com/",
   "image": "https://checkpointqc.com/icon.png",
+  "downloadUrl": "https://apps.apple.com/app/checkpoint-qc/id6799437440",
+  "softwareVersion": "1.2",
+  "screenshot": [
+    "https://checkpointqc.com/shot-verify.png",
+    "https://checkpointqc.com/shot-sky-pass.png",
+    "https://checkpointqc.com/shot-metadata.png"
+  ],
   "author": { "@type": "Organization", "name": "RedPixl s.r.o.", "url": "https://redpixl.pictures/" },
   "featureList": [
     "Curated, always-current delivery-spec library",
@@ -423,6 +433,129 @@
       </div>
     </div>
     <p class="plat-note">Prices in US dollars; local prices are set by the App Store for your region. The one-time unlock never expires, and Spec Updates are entirely optional — if the subscription lapses you keep every spec that shipped with your version.</p>
+  </div>
+</section>
+
+<style>
+  #faq .faq-list{max-width:820px;margin:28px auto 0;text-align:left;border-top:1px solid var(--line)}
+  #faq details{border-bottom:1px solid var(--line)}
+  #faq summary{list-style:none;cursor:pointer;padding:20px 44px 20px 2px;position:relative;font-size:18px;font-weight:700;color:var(--ink)}
+  #faq summary::-webkit-details-marker{display:none}
+  #faq summary::after{content:"+";position:absolute;right:8px;top:15px;font-size:26px;font-weight:400;line-height:1;color:#ef4444}
+  #faq details[open] summary::after{content:"\2013"}
+  #faq .faq-a{padding:0 2px 22px;color:var(--muted);font-size:16px;line-height:1.65}
+  #faq .faq-a a{color:#ef4444}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Checkpoint QC check?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It reads the real file — codec and profile, raster, frame rate, scan type, chroma subsampling, bit depth, colour primaries and transfer, audio channel layout, sample rate, timecode and loudness — and checks every value against the delivery spec you pick. Each rule passes, fails or is flagged for manual review; nothing is guessed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which delivery specs are in the catalogue?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "223 curated delivery specs from 69 organisations across 24 countries — streaming (Netflix, Amazon Prime Video, Apple TV, Hulu / Disney+, HBO Max, Paramount+ and more), broadcasters (BBC, ITV, Sky, ZDF, ARTE, RAI, NHK, PBS, CBC and more) and open standards (AS-11 / UK DPP, EBU R 128, Theatrical DCP). Each rule cites the published document, its version and the date it was verified."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it measure loudness to EBU R 128 / BS.1770?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It measures integrated loudness, loudness range and true peak to ITU-R BS.1770-4 / EBU R 128 from the actual audio — not read from metadata — and also detects black and frozen frames."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it check DCP and IMF packages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes — including the asset map, packing list and composition playlist, alongside the video, audio and timecode checks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I QC audio-only deliverables?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Radio, podcast masters, Atmos BWF ADM, audio description and dubbing stems all check cleanly with no video track — audio-only deliverables are first-class."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I build my own or a client's delivery spec?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Build custom presets with the same rule engine — a house style, a one-off client spec or a personal checklist. Any matcher the built-in catalogue uses is available to you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my media uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Checkpoint QC is a native, sandboxed macOS app that reads files directly from local and network storage. No account, no upload, no telemetry — your media never leaves your machine, and the app makes no network calls beyond the App Store itself."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free version, and what does it cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Browse the entire catalogue for free — every spec, rule and citation. Two open standards, AS-11 UK DPP HD and EBU R 128 Programme, are fully usable for file verification at no cost. A one-time Full Unlock enables verification and PDF export across the whole catalogue; an optional yearly Spec Updates subscription adds specs published after your purchase."
+      }
+    }
+  ]
+}
+</script>
+<section id="faq">
+  <div class="wrap">
+    <p class="eyebrow">FAQ</p>
+    <h2>Questions QC teams actually ask</h2>
+    <div class="faq-list">
+      <details>
+        <summary>What does Checkpoint QC check?</summary>
+        <div class="faq-a"><p>It reads the real file — codec and profile, raster, frame rate, scan type, chroma subsampling, bit depth, colour primaries and transfer, audio channel layout, sample rate, timecode and loudness — and checks every value against the delivery spec you pick. Each rule passes, fails or is flagged for manual review; nothing is guessed.</p></div>
+      </details>
+      <details>
+        <summary>Which delivery specs are in the catalogue?</summary>
+        <div class="faq-a"><p>223 curated delivery specs from 69 organisations across 24 countries — streaming (Netflix, Amazon Prime Video, Apple TV, Hulu / Disney+, HBO Max, Paramount+ and more), broadcasters (BBC, ITV, Sky, ZDF, ARTE, RAI, NHK, PBS, CBC and more) and open standards (AS-11 / UK DPP, EBU R 128, Theatrical DCP). Each rule cites the published document, its version and the date it was verified.</p></div>
+      </details>
+      <details>
+        <summary>Does it measure loudness to EBU R 128 / BS.1770?</summary>
+        <div class="faq-a"><p>Yes. It measures integrated loudness, loudness range and true peak to ITU-R BS.1770-4 / EBU R 128 from the actual audio — not read from metadata — and also detects black and frozen frames.</p></div>
+      </details>
+      <details>
+        <summary>Does it check DCP and IMF packages?</summary>
+        <div class="faq-a"><p>Yes — including the asset map, packing list and composition playlist, alongside the video, audio and timecode checks.</p></div>
+      </details>
+      <details>
+        <summary>Can I QC audio-only deliverables?</summary>
+        <div class="faq-a"><p>Yes. Radio, podcast masters, Atmos BWF ADM, audio description and dubbing stems all check cleanly with no video track — audio-only deliverables are first-class.</p></div>
+      </details>
+      <details>
+        <summary>Can I build my own or a client's delivery spec?</summary>
+        <div class="faq-a"><p>Yes. Build custom presets with the same rule engine — a house style, a one-off client spec or a personal checklist. Any matcher the built-in catalogue uses is available to you.</p></div>
+      </details>
+      <details>
+        <summary>Is my media uploaded anywhere?</summary>
+        <div class="faq-a"><p>No. Checkpoint QC is a native, sandboxed macOS app that reads files directly from local and network storage. No account, no upload, no telemetry — your media never leaves your machine, and the app makes no network calls beyond the App Store itself.</p></div>
+      </details>
+      <details>
+        <summary>Is there a free version, and what does it cost?</summary>
+        <div class="faq-a"><p>Browse the entire catalogue for free — every spec, rule and citation. Two open standards, AS-11 UK DPP HD and EBU R 128 Programme, are fully usable for file verification at no cost. A one-time Full Unlock enables verification and PDF export across the whole catalogue; an optional yearly Spec Updates subscription adds specs published after your purchase.</p></div>
+      </details>
+    </div>
   </div>
 </section>
 
