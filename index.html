@@ -651,9 +651,9 @@
 (function(){
   var f=document.getElementById('ml-form'); if(!f) return;
   var btn=document.getElementById('ml-btn'), msg=document.getElementById('ml-msg');
-  // Shared RedPixl list Worker. Named after the first site that used it; the
-  // `list` field is what separates Checkpoint QC signups from DIT ones.
-  var ENDPOINT='https://ditmedia-list.jiri-vatka.workers.dev/subscribe';
+  // Checkpoint QC's own list Worker (source: Checkpoint-QC repo, worker-list/).
+  // Its only list id is `app`, which is the default, so no `list` field is sent.
+  var ENDPOINT='https://checkpoint-list.jiri-vatka.workers.dev/subscribe';
   function show(t,err){ msg.textContent=t; msg.style.color=err?'#c0392b':'var(--blue)'; }
   f.addEventListener('submit',function(e){
     e.preventDefault();
@@ -662,7 +662,7 @@
     if(!f.consent.checked){ show('Please tick the box to consent.',true); return; }
     btn.disabled=true; show('Signing you up\u2026',false);
     fetch(ENDPOINT,{method:'POST',headers:{'content-type':'application/json'},
-      body:JSON.stringify({email:email,consent:f.consent.checked,website:f.website.value,list:'checkpoint'})})
+      body:JSON.stringify({email:email,consent:f.consent.checked,website:f.website.value})})
     .then(function(r){return r.json().catch(function(){return{};}).then(function(j){return{ok:r.ok,j:j};});})
     .then(function(res){ btn.disabled=false;
       if(res.ok){ f.reset(); show("You're on the list \u2014 thanks!",false); }
