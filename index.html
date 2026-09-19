@@ -36,6 +36,19 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Checkpoint QC — what it actually does",
+  "description": "A forty-second film: browse a delivery spec, point Checkpoint QC at a real ProRes 422 HQ master, and watch every parameter scored against Sky's UHD SDR delivery specification — codec, raster, frame rate and programme loudness, each checked against the published document.",
+  "thumbnailUrl": "https://checkpointqc.com/checkpoint-qc-film-poster.jpg",
+  "contentUrl": "https://checkpointqc.com/checkpoint-qc-film.mp4",
+  "uploadDate": "2026-09-19",
+  "duration": "PT40S",
+  "publisher": { "@type": "Organization", "name": "RedPixl s.r.o.", "url": "https://redpixl.pictures/" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Checkpoint QC",
   "applicationCategory": "MultimediaApplication",
@@ -191,10 +204,36 @@
       loudness — and hand over a clean PDF QC report.</p>
     <p class="store">🍎 Available now on the Mac&nbsp;App&nbsp;Store</p>
     <a class="cta" href="https://apps.apple.com/app/checkpoint-qc/id6799437440">Download on the Mac App Store →</a>
+    <a class="cta secondary" href="#film">Watch the 40-second film →</a>
     <a class="cta secondary" href="#how">See how it works →</a>
     <a class="cta secondary" href="https://github.com/jirivatka/Checkpoint-QC-Support/discussions">Join the community &amp; get updates →</a>
   </div>
 </header>
+
+<style>
+  #film .frame{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#131313;
+    box-shadow:0 22px 60px rgba(0,0,0,.14);display:block}
+  #film video{display:block;width:100%;height:auto;background:#131313}
+  #film .meta{margin-top:14px;font-size:14px;color:var(--muted)}
+</style>
+<section id="film">
+  <div class="wrap">
+    <p class="eyebrow">Forty seconds</p>
+    <h2>What it actually does</h2>
+    <p class="sub">Browse the spec, point it at a real master, and watch every parameter get scored
+      against the document it came from.</p>
+    <div class="frame">
+      <video controls preload="none" playsinline poster="checkpoint-qc-film-poster.jpg"
+             width="1920" height="1080"
+             aria-label="A forty-second film: Checkpoint QC verifying a ProRes 422 HQ master against Sky's UHD SDR delivery spec, with every parameter scored pass">
+        <source src="checkpoint-qc-film.mp4" type="video/mp4">
+        <p>Your browser can&rsquo;t play this video.
+          <a href="checkpoint-qc-film.mp4">Download the film (MP4, 40s)</a>.</p>
+      </video>
+    </div>
+    <p class="meta">40 seconds &middot; the real app, checked against Sky UHD SDR &middot; sound on, but it&rsquo;s quiet.</p>
+  </div>
+</section>
 
 <section id="how">
   <div class="wrap">
